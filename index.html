@@ -168,10 +168,10 @@
         }
 
         .content {
-            z-index: 2;
-            width: 90%;
-            margin-top: 0;
-            /* remove margin-top auto para não ficar na base */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 340px;
         }
 
         /* TAMANHO GRANDE NO DESKTOP/TABLET/NOTEBOOK */
@@ -192,27 +192,8 @@
             margin-left: 340px;
         }
 
-        /* LINHAS */
-        .linha-box {
-            width: 10%;
-            height: 4px;
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 0 0 800px;
-            border: 1px solid rgba(128, 128, 128, 0.2);
-        }
 
-        .vermelha {
-            background-color: red;
-        }
 
-        .amarela {
-            background-color: #ffff99;
-        }
-
-        .azul {
-            background-color: rgb(80, 217, 210);
-        }
 
         /* 📱 MOBILE */
         @media (max-width: 768px) {
@@ -220,6 +201,7 @@
             .side {
                 font-size: 40px;
                 margin: 15px 0px 0px 100px;
+                display: none;
                 /* empurra levemente pra direita */
             }
 
@@ -273,6 +255,7 @@
                 padding-left: 0;
                 /* remove espaço interno */
                 margin-left: 0;
+                margin: 0px 0px 0px -200px;
                 /* garante que não empurra */
             }
 
@@ -299,7 +282,8 @@
             position: absolute;
             top: 20%;
             left: 20px;
-            width: 250px;
+            width: 350px;
+            /* AUMENTEI AQUI */
             height: auto;
             z-index: 2;
             transform: translateY(-50%);
@@ -309,6 +293,9 @@
             position: absolute;
             width: 100%;
             height: auto;
+            max-width: 100%;
+            height: auto;
+            margin: -130px 0px 0px 0px;
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
         }
@@ -320,13 +307,12 @@
         /* ===== RESPONSIVO PARA CELULAR ===== */
         @media (max-width: 768px) {
             .hero-mascote {
-                width: 120px;
-                /* reduz o mascote */
-                top: 15%;
-                /* ajusta posição vertical */
+                width: 300px;
+                /* tamanho maior no celular */
                 left: 10px;
-                /* ajusta posição horizontal */
+                /* opcional: ajusta posição */
             }
+
 
             .hero-mascote img {
                 width: 100%;
@@ -721,9 +707,8 @@
         @media (max-width: 480px) {
             .map-container {
                 width: 100%;
-                /* ocupa toda a largura da tela */
-                height: 70px;
-                /* altura compacta em celulares */
+                min-height: 200px;
+                /* 🔥 altura decente */
             }
         }
 
@@ -977,6 +962,65 @@
                 /* menu sempre visível em telas grandes */
             }
         }
+
+        .horarios-box {
+            width: 240px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #1b5874;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 8px 20px rgba(31, 111, 157, 0.2);
+
+            margin-left: 340px;
+            /* MESMO alinhamento do .side */
+            margin-top: 10px;
+            /* espaço embaixo do texto */
+        }
+
+        @media (max-width: 768px) {
+            .horarios-box {
+                width: 200px;
+                /* menor */
+                padding: 10px;
+                /* menos espaço interno */
+                margin: -40px 0px 0px -20px;
+                /* centraliza */
+            }
+
+            .horarios-box h3 {
+                font-size: 13px;
+            }
+
+            .cidade {
+                font-size: 11px;
+            }
+
+            .horario {
+                font-size: 11px;
+            }
+        }
+
+        .horarios-box h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .cidade {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+
+        .horario {
+            color: #ffd500;
+            font-weight: bold;
+            background-color: #162b46;
+        }
     </style>
 </head>
 
@@ -1017,10 +1061,12 @@
 
         <!-- HERO MASCOTE LADO ESQUERDO -->
         <div class="hero-mascote">
-            <img src="apontando.png" class="personagem ativo" alt="Personagem">
-            <img src="coisas-nacesta.png" class="personagem" alt="Personagem">
-            <img src="apontando.png" class="personagem ativo" alt="Personagem">
-            <img src="comida.png" class="personagem" alt="Personagem">
+            <img src="paradao.png" class="personagem ativo" alt="Personagem">
+            <img src="mostrando.png" class="personagem" alt="Personagem">
+            <img src="vem.png" class="personagem" alt="Personagem">
+            <img src="celular.png" class="personagem ativo" alt="Personagem">
+            <img src="mostrando.png" class="personagem" alt="Personagem">
+            <img src="coisas-cesta.png" class="personagem" alt="Personagem">
         </div>
 
         <div class="content">
@@ -1030,7 +1076,25 @@
             <div class="linha-box amarela"></div>
             <div class="linha-box azul"></div>
 
-            <h1>horarios de atendimento das 8:30 as 19:30</h1>
+            <div class="horarios-box">
+                <h3>Horário de Atendimento</h3>
+
+                <div class="cidade">
+                    <span>Clevelândia</span>
+                    <span class="horario">08:00 às 18:00</span>
+                </div>
+
+                <div class="cidade">
+                    <span>Mariópolis</span>
+                    <span class="horario">08:00 às 17:30</span>
+                </div>
+
+                <div class="cidade">
+                    <span>Palmas - PR</span>
+                    <span class="horario">08:00 às 18:30</span>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- Link Font Awesome 6 CDN -->
