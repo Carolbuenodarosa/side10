@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero com Mascote</title>
+
+    <!-- Fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-yellow: #FFD400;
+            --primary-blue: #2f5cff;
+            --zap-green: #25D366;
+            --zap-green-hover: #1ebe5d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--primary-yellow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border: 1px solid rgba(255, 206, 8, 0.532);
+        }
+
+        /* CSS básico do menu */
+        #menu {
+            display: none;
+        }
+
+        #menu.active {
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            #menu {
+                display: flex !important;
+            }
+
+            .menu-btn {
+                display: none;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .logo-texto {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .linhas {
+            display: flex;
+            gap: 4px;
+            margin-top: 3px;
+        }
+
+        .linha {
+            width: 25px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .vermelha {
+            background: #e53935;
+        }
+
+        .amarela {
+            background: #ffe560;
+        }
+
+        .azul {
+            background: #36ffde;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+        }
+
+        .btn {
+            background: #000;
+            color: var(--primary-yellow);
+            padding: 6px 15px;
+            border-radius: 5px;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 60vh;
+            /* altura padrão desktop */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* empilha conteúdo verticalmente */
+            justify-content: flex-start;
+            /* força conteúdo para cima */
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 100px;
+            /* menos que antes, texto um pouco mais baixo */
+            padding-bottom: 20px;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .content {
+            z-index: 2;
+            width: 90%;
+            margin-top: 0;
+            /* remove margin-top auto para não ficar na base */
+        }
+
+        /* TAMANHO GRANDE NO DESKTOP/TABLET/NOTEBOOK */
+        h1 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 35px 0 0 460px;
+            color: #343434;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .side {
+            font-size: 65px;
+            font-weight: bold;
+            color: #222;
+            margin-left: 340px;
+        }
+
+        /* LINHAS */
+        .linha-box {
+            width: 10%;
+            height: 4px;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0 0 800px;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        .vermelha {
+            background-color: red;
+        }
+
+        .amarela {
+            background-color: #ffff99;
+        }
+
+        .azul {
+            background-color: rgb(80, 217, 210);
+        }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+
+            .side {
+                font-size: 40px;
+                margin: 15px 0px 0px 100px;
+                /* empurra levemente pra direita */
+            }
+
+            .content h1 {
+                display: none;
+            }
+
+            .linha-box {
+                width: 30%;
+                /* maior no celular */
+                margin: 10px 0px 10px 200px;
+                /* centraliza */
+            }
+        }
+
+        .destaque {
+            font-size: 3.2rem;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(0, 187, 255, 0.8);
+        }
+
+        .btn-saiba-mais {
+            margin-top: 10px;
+            padding: 12px 24px;
+            background-color: #685aff;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .btn-saiba-mais:hover {
+            background-color: #000;
+        }
+
+        /* ===== RESPONSIVO PARA CELULAR ===== */
+        @media (max-width: 768px) {
+            .hero {
+                height: 35vh;
+                padding-top: 10px;
+                padding-bottom: 15px;
+            }
+
+            .hero-img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .content {
+                padding-left: 0;
+                /* remove espaço interno */
+                margin-left: 0;
+                /* garante que não empurra */
+            }
+
+
+            .content h1 {
+                display: none;
+            }
+
+            .destaque {
+                font-size: 2rem;
+                text-shadow: 0 0 8px rgba(0, 187, 255, 0.8);
+            }
+
+            .btn-saiba-mais {
+                padding: 6px 14px;
+                font-size: 0.85rem;
+                display: block;
+                margin-left: auto;
+            }
+        }
+
+        /* Hero mascote */
+        .hero-mascote {
+            position: absolute;
+            top: 20%;
+            left: 20px;
+            width: 250px;
+            height: auto;
+            z-index: 2;
+            transform: translateY(-50%);
+        }
+
+        .hero-mascote img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .hero-mascote img.ativo {
+            opacity: 1;
+        }
+
+        /* ===== RESPONSIVO PARA CELULAR ===== */
+        @media (max-width: 768px) {
+            .hero-mascote {
+                width: 120px;
+                /* reduz o mascote */
+                top: 15%;
+                /* ajusta posição vertical */
+                left: 10px;
+                /* ajusta posição horizontal */
+            }
+
+            .hero-mascote img {
+                width: 100%;
+                /* mantém proporcional */
+                height: auto;
+            }
+        }
+
+        /* ===== CARDS / CAROUSEL RESPONSIVO ===== */
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            /* cards não quebram linha, mas são flexíveis */
+            width: 22%;
+            /* 4 cards por linha em desktop */
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            /* imagem sempre quadrada */
+            object-fit: contain;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .title {
+            font-size: 13px;
+            margin: 8px 0;
+            line-height: 1.3;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .discount {
+            background: #d4f8d4;
+            color: #008000;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        /* Botões carousel */
+        .btn-carousel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #eee;
+            font-size: 18px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .btn-carousel.left {
+            left: 5px;
+        }
+
+        .btn-carousel.right {
+            right: 5px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 1024px) {
+            .card {
+                width: 30%;
+                /* 3 cards visíveis */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 45%;
+                /* 2 cards visíveis */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 80%;
+                /* 1 card por vez */
+            }
+        }
+
+        /* ===== REELS RESPONSIVO ===== */
+        .reels-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            border-radius: 15px;
+            background-color: transparent;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            height: 280px;
+            /* altura padrão */
+        }
+
+        .reels-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .h2-if {
+            color: #004aad;
+            font-size: 25px;
+        }
+
+        .story {
+            flex: 0 0 auto;
+            /* cada story mantém seu tamanho, mas flexível */
+            width: 180px;
+            height: 280px;
+            border-radius: 15px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            background-color: #222;
+        }
+
+        .story:hover {
+            transform: scale(1.05);
+        }
+
+        .story video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .story-overlay {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 16px;
+            z-index: 2;
+            text-shadow: 0 0 5px black;
+            color: rgb(255, 255, 255);
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 1024px) {
+            .story {
+                width: 150px;
+                height: 240px;
+            }
+
+            .reels-wrapper {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .story {
+                width: 130px;
+                height: 210px;
+            }
+
+            .reels-wrapper {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story {
+                width: 100px;
+                height: 180px;
+            }
+
+            .reels-wrapper {
+                height: 190px;
+                gap: 10px;
+            }
+
+            .story-overlay {
+                font-size: 12px;
+            }
+        }
+
+        /* ===== ICON BAR COMPACTA ===== */
+        .icon-bar-compact {
+            display: flex;
+            justify-content: center;
+            /* centraliza no PC/notebook */
+            gap: 15px;
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 20px auto;
+            /* centraliza a barra horizontalmente */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            /* scroll horizontal para celular */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .icon-bar-compact::-webkit-scrollbar {
+            display: none;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            color: #004aad;
+        }
+
+        .icon-item i {
+            font-size: 28px;
+            border: 2px solid #004aad;
+            border-radius: 50%;
+            padding: 10px;
+            background: white;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 5px rgba(0, 74, 173, 0.15);
+        }
+
+        .icon-item p {
+            margin-top: 5px;
+            font-weight: 600;
+            font-size: 12px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .icon-item:hover i {
+            background-color: #004aad;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 74, 173, 0.6);
+        }
+
+        .icon-item:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ===== RESPONSIVO PARA CELULAR ===== */
+        @media (max-width: 768px) {
+            .icon-bar-compact {
+                justify-content: flex-start;
+                /* alinha à esquerda no celular */
+                padding: 10px 5px;
+                gap: 10px;
+                margin: 10px;
+                /* reduz margem */
+            }
+
+            .icon-item {
+                min-width: 50px;
+                /* menor para caber mais ícones */
+            }
+
+            .icon-item i {
+                font-size: 22px;
+                padding: 8px;
+            }
+
+            .icon-item p {
+                font-size: 10px;
+                margin-top: 3px;
+            }
+        }
+
+        /* ===== CENTRALIZADO ===== */
+        .centralizado {
+            text-align: center;
+            margin-top: 3%;
+        }
+
+        /* ===== MAIN MAPS ===== */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+            gap: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        .map-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            /* espaço entre os mapas */
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .map-container {
+            flex: 1 1 300px;
+            /* ocupa espaço proporcional, mínimo 300px */
+            height: 150px;
+            /* altura menor */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 900px) {
+            .map-row {
+                flex-direction: column;
+                /* mapas um abaixo do outro */
+                align-items: center;
+            }
+
+            .map-container {
+                width: 90%;
+                /* ocupa quase toda a tela */
+                height: 130px;
+                /* altura menor em tablets */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-container {
+                width: 100%;
+                /* ocupa toda a largura da tela */
+                height: 70px;
+                /* altura compacta em celulares */
+            }
+        }
+
+        /* ===== MASCOTE FIXO ===== */
+        .mascote-box,
+        .chat-mascote-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .mascote-container,
+        .chat-mascote-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .chat-mascote-container {
+            width: 80px;
+            height: 80px;
+        }
+
+        .mascote,
+        .chat-mascote-img {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .mascote.ativo,
+        .chat-mascote-img.ativo {
+            opacity: 1;
+        }
+
+        .mascote-zap,
+        .chat-mascote-zap {
+            position: absolute;
+            top: -15px;
+            right: 0;
+            width: 45px;
+            height: 45px;
+            background: var(--zap-green);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .mascote-zap:hover,
+        .chat-mascote-zap:hover {
+            transform: scale(1.1);
+            background: var(--zap-green-hover);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-professional {
+            background-color: #FFC107;
+            color: #212121;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px 20px 20px;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li a {
+            color: #212121;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #795548;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #212121;
+            color: #FFC107;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #795548;
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 15px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 1024px) {
+            .card-container {
+                justify-content: space-around;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-section {
+                width: 100%;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--primary-yellow);
+                max-height: 0;
+                overflow: hidden;
+                transition: 0.3s;
+            }
+
+            nav.show {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .content h1 {
+                font-size: 1.8rem;
+                padding: 0 15px;
+            }
+
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mascote-container {
+                width: 80px;
+                height: 80px;
+            }
+
+            .chat-mascote-zap {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .icon-bar-compact {
+                max-width: 100%;
+                padding: 15px 10px;
+            }
+
+            .icon-item {
+                width: 60px;
+            }
+
+            .icon-item i {
+                font-size: 24px;
+                padding: 8px;
+            }
+
+            .icon-item p {
+                font-size: 11px;
+            }
+        }
+
+        #menu {
+            display: none;
+            /* menu escondido por padrão */
+        }
+
+        #menu.active {
+            display: block;
+            /* menu aparece quando ativo */
+        }
+
+        @media (min-width: 768px) {
+            #menu {
+                display: flex !important;
+                /* menu sempre visível em telas grandes */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo SIDE 10">
+                <div class="logo-texto">
+                    <span>SIDE 10</span>
+                    <div class="linhas">
+                        <div class="linha vermelha"></div>
+                        <div class="linha amarela"></div>
+                        <div class="linha azul"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+            <nav id="menu">
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#" class="btn">Entrar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <img src="Captura de ecrã 2026-03-22 224820.png" alt="Hero Background" class="hero-img">
+        <div class="overlay"></div>
+
+        <!-- HERO MASCOTE LADO ESQUERDO -->
+        <div class="hero-mascote">
+            <img src="apontando.png" class="personagem ativo" alt="Personagem">
+            <img src="coisas-nacesta.png" class="personagem" alt="Personagem">
+            <img src="apontando.png" class="personagem ativo" alt="Personagem">
+            <img src="comida.png" class="personagem" alt="Personagem">
+        </div>
+
+        <div class="content">
+            <div class="side">SIDE 10</div>
+
+            <div class="linha-box vermelha"></div>
+            <div class="linha-box amarela"></div>
+            <div class="linha-box azul"></div>
+
+            <h1>horarios de atendimento das 8:30 as 19:30</h1>
+        </div>
+    </div>
+    <!-- Link Font Awesome 6 CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <div class="icon-bar-compact">
+        <div class="icon-item">
+            <i class="fa-solid fa-tag"></i>
+            <p>Ofertas do dia</p>
+        </div>
+        <div class="icon-item">
+            <i class="fa-solid fa-couch"></i>
+            <p>Casa</p>
+        </div>
+        <div class="icon-item">
+            <i class="fa-solid fa-hammer"></i>
+            <p>Ferramentas</p>
+        </div>
+        <div class="icon-item">
+            <i class="fa-solid fa-blender"></i>
+            <p>Eletroportáteis</p>
+        </div>
+        <div class="icon-item">
+            <i class="fa-solid fa-puzzle-piece"></i> <!-- trocado -->
+            <p>Brinquedos</p>
+        </div>
+
+        <div class="icon-item">
+            <i class="fa-solid fa-utensils"></i> <!-- trocado -->
+            <p>Domésticas</p>
+        </div>
+    </div>
+
+    <h2 class="h2-if">Reels</h2>
+    <div class="reels-wrapper">
+        <div class="story">
+            <video src="video1.mp4" muted></video>
+            <div class="story-overlay">Reel 1</div>
+        </div>
+        <div class="story">
+            <video src="video2.mp4" muted></video>
+            <div class="story-overlay">Reel 2</div>
+        </div>
+        <div class="story">
+            <video src="video3.mp4" muted></video>
+            <div class="story-overlay">Reel 3</div>
+        </div>
+    </div>
+
+    <script>
+        // Permite play/pause ao clicar no vídeo
+        document.querySelectorAll('.story video').forEach(video => {
+            video.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+        });
+    </script>
+    <script>
+        // ===== HERO MASCOTE LADO ESQUERDO =====
+        const personagens = document.querySelectorAll(".hero-mascote .personagem");
+        let personagemIndex = 0;
+
+        setInterval(() => {
+            // Remove a classe 'ativo' da imagem atual
+            personagens[personagemIndex].classList.remove("ativo");
+
+            // Avança para a próxima imagem (loop)
+            personagemIndex = (personagemIndex + 1) % personagens.length;
+
+            // Adiciona a classe 'ativo' na nova imagem
+            personagens[personagemIndex].classList.add("ativo");
+        }, 1500); // troca a cada 1,5s
+
+        // ===== TROCA DE TEXTO =====
+        const textos = ["$5", "$10", "$15", "$20MAX"];
+        const elemento = document.getElementById("troca-texto");
+        let textoIndex = 0;
+
+        setInterval(() => {
+            // animação fade-out
+            elemento.classList.add("fade-out");
+
+            setTimeout(() => {
+                // Atualiza o texto
+                textoIndex = (textoIndex + 1) % textos.length;
+                elemento.textContent = textos[textoIndex];
+
+                // animação fade-in
+                elemento.classList.remove("fade-out");
+                elemento.classList.add("fade-in");
+
+                // remove fade-in depois da animação para poder repetir
+                setTimeout(() => {
+                    elemento.classList.remove("fade-in");
+                }, 300);
+            }, 300);
+
+        }, 2000); // troca de texto a cada 2s
+    </script>
+
+    <!-- CAROUSEL DE CARDS -->
+    <h2 class="centralizado">Explore e aproveite</h2>
+
+    <div class="container">
+
+
+        <div class="carousel-wrapper">
+            <button class="btn-carousel left" onclick="scrollCarousel(-1)">❮</button>
+
+            <div class="carousel" id="carousel">
+
+                <!-- CARD -->
+                <div class="card">
+                    <img src="https://compramy.com.br/wp-content/uploads/2023/03/Sapateira-4-Andares.jpg" />
+                    <div class="discount">10% de desconto</div>
+                    <div class="title">Sapateira de inox</div>
+                    <div class="price">R$14,99</div>
+                </div>
+
+                <div class="card">
+                    <img
+                        src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSwP8eF_6SoHaq1dAS0tvqBmZrlWhqsdkPbhgA2DsSac3eLz7nxY6vNtV-zJYLmTAi3_YY2Ms-mcc_QxC0ceHD50UsFdg0gW2JK_FKn8Z-FagBvk6fjzHMLG1tBp6Yl2Ty59vfMTSGILA&usqp=CAc" />
+                    <div class="discount">10% desconto</div>
+                    <div class="title">Cabo de carregador colorido 1,5m</div>
+                    <div class="price">R$14,99</div>
+                </div>
+
+                <div class="card">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_952885-MLB49581479085_042022-O.webp" />
+                    <div class="discount">10% desconto</div>
+                    <div class="title">Cesta de pascoab descoraçao</div>
+                    <div class="price">R$20</div>
+                </div>
+
+                <div class="card">
+                    <img
+                        src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSW-Po4MEDkeczQsO7qakZPE2dsyShhTmdRpQvYgGA6taVNcVmIxM-KGuuR-jZfUbEQZk3aV0maNbg0Z-VKd77Y-E0mbimbIbHf67XdrRZ4AiwEiTfDN0X5Lkyib1H-lkUrrKVvc6UTbA&usqp=CAc" />
+                    <div class="discount">10% desconto</div>
+                    <div class="title">Ovinhos de pascoa para colorir com tintas D'agua</div>
+                    <div class="price">R$9,99</div>
+                </div>
+
+                <div class="card">
+                    <img
+                        src="data:image/webp;base64,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" />
+                    <div class="discount">10% desconto</div>
+                    <div class="title">Depilador de sombrancelha</div>
+                    <div class="price">R$20</div>
+                </div>
+
+            </div>
+
+            <button class="btn-carousel right" onclick="scrollCarousel(1)">❯</button>
+        </div>
+    </div>
+    <div class="main-container">
+        <h2>Onde estamos localizados</h2>
+
+        <div class="map-row">
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!3m2!1spt-BR!2sbr!4v1774208787045!5m2!1spt-BR!2sbr!6m8!1m7!1syG4sXoikbio1LsBnP6PaLw!2m2!1d-26.46966976732482!2d-52.01093660161681!3f349.4853054730678!4f13.869061982422878!5f0.7820865974627469"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!3m2!1spt-BR!2sbr!4v1774209143136!5m2!1spt-BR!2sbr!6m8!1m7!1scFjCRu-PYopPYiseQNr6xQ!2m2!1d-26.39600103578779!2d-52.34134343194064!3f97.09354192419445!4f3.6138797121635378!5f0.4000000000000002"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!3m2!1spt-BR!2sbr!4v1774209511803!5m2!1spt-BR!2sbr!6m8!1m7!1sMxGHSNwRnn6UsyAaxCBT2w!2m2!1d-26.40423236770114!2d-52.35979534972957!3f226.98191327260793!4f0.9180293453819957!5f0.7820865974627469"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mascotes = document.querySelectorAll('.chat-mascote-img');
+            let index = 0;
+
+            if (mascotes.length > 0) {
+                mascotes[index].classList.add('ativo');
+
+                setInterval(() => {
+                    mascotes[index].classList.remove('ativo');
+
+                    index = (index + 1) % mascotes.length;
+
+                    mascotes[index].classList.add('ativo');
+                }, 2000);
+            }
+        });
+    </script>
+
+
+    <!-- HERO MASCOTE FIXO -->
+    <div class="chat-mascote-box">
+        <a href="https://wa.me/5546999834088" target="_blank" class="chat-mascote-zap">
+            <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path
+                    d="M20.52 3.48A11.91 11.91 0 0012.05 0C5.52 0 .2 5.33.2 11.86c0 2.09.55 4.14 1.6 5.94L0 24l6.35-1.67a11.9 11.9 0 005.7 1.45h.01c6.53 0 11.85-5.33 11.85-11.86 0-3.17-1.23-6.14-3.39-8.44zM12.06 21.6h-.01a9.74 9.74 0 01-4.96-1.36l-.35-.2-3.77.99 1-3.67-.23-.38a9.7 9.7 0 01-1.5-5.2C2.24 6.43 6.63 2.04 12.06 2.04c2.6 0 5.05 1.01 6.89 2.85a9.7 9.7 0 012.84 6.88c0 5.43-4.4 9.83-9.83 9.83zm5.4-7.36c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.34.22-.63.07-.3-.15-1.25-.46-2.38-1.46-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.5.15-.17.2-.30.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.19-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.24 5.13 4.54.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z" />
+            </svg>
+        </a>
+
+        <a href="https://wa.me/5546999834088">
+            <div class="chat-mascote-container">
+                <img src="placa.png" class="chat-mascote-img ativo" alt="Mascote sorrindo">
+                <img src="feliz.png" class="chat-mascote-img" alt="Mascote acenando">
+            </div>
+        </a>
+    </div>
+    <footer class="footer-professional">
+        <div class="footer-container">
+            <!-- Marca / Sobre -->
+            <div class="footer-section">
+                <h3>MinhaMarca</h3>
+                <p>Transformando experiências com qualidade e inovação.</p>
+            </div>
+
+            <!-- Links Rápidos -->
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Produtos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+
+            <!-- Contato -->
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Email: contato@minhamarca.com</p>
+                <p>Telefone: (11) 99999-9999</p>
+            </div>
+
+            <!-- Redes Sociais -->
+            <div class="footer-section">
+                <h4>Siga-nos</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 MinhaMarca. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome para os ícones de redes sociais -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+
+
+
+    <script>
+        // ===== HERO MASCOTE FLASH =====
+        const mascotes = document.querySelectorAll(".mascote-container .mascote");
+        let mascoteIndex = 0;
+
+        setInterval(() => {
+            mascotes[mascoteIndex].classList.remove("ativo");
+            mascoteIndex = (mascoteIndex + 1) % mascotes.length;
+            mascotes[mascoteIndex].classList.add("ativo");
+        }, 2000); // troca a cada 2s
+
+        // ===== MENU RESPONSIVO =====
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("show");
+        }
+
+        // ===== CAROUSEL =====
+        const slide = document.querySelector('.carousel-slide');
+        const items = document.querySelectorAll('.carousel-item');
+        const prevBtn = document.querySelector('.carousel-btn.left');
+        const nextBtn = document.querySelector('.carousel-btn.right');
+        const indicators = document.querySelectorAll('.carousel-indicators span');
+        let carouselIndex = 0;
+
+        function updateCarousel() {
+            slide.style.transform = `translateX(-${carouselIndex * 100}%)`;
+            indicators.forEach((dot, i) => {
+                dot.classList.toggle('active', i === carouselIndex);
+                dot.setAttribute('aria-selected', i === carouselIndex ? 'true' : 'false');
+                dot.tabIndex = i === carouselIndex ? 0 : -1;
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            carouselIndex = (carouselIndex - 1 + items.length) % items.length;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            carouselIndex = (carouselIndex + 1) % items.length;
+            updateCarousel();
+        });
+
+        indicators.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                carouselIndex = i;
+                updateCarousel();
+            });
+        });
+
+        let carouselInterval = setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % items.length;
+            updateCarousel();
+        }, 5000);
+
+        slide.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+        slide.addEventListener('mouseleave', () => carouselInterval = setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % items.length;
+            updateCarousel();
+        }, 5000));
+
+        updateCarousel();
+
+        // ===== TROCA DE TEXTO =====
+        const textos = ["$5", "$10", "$15", "$20MAX"];
+        const elemento = document.getElementById("troca-texto");
+        let textoIndex = 0;
+
+        setInterval(() => {
+            elemento.classList.add("fade-out");
+
+            setTimeout(() => {
+                textoIndex = (textoIndex + 1) % textos.length;
+                elemento.textContent = textos[textoIndex];
+                elemento.classList.remove("fade-out");
+                elemento.classList.add("fade-in");
+            }, 300);
+
+        }, 1500);
+    </script>
+    <script defer>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
