@@ -779,6 +779,7 @@
         .footer-professional {
             background-color: #FFC107;
             color: #212121;
+            margin-top: 2%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 40px 20px 20px 20px;
             box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
@@ -984,7 +985,7 @@
                 /* menor */
                 padding: 10px;
                 /* menos espaço interno */
-                margin: -40px 0px 0px 20px;
+                margin: -40px 0px 0px 30px;
                 /* centraliza */
             }
 
@@ -1021,36 +1022,282 @@
             font-weight: bold;
             background-color: #162b46;
         }
+
+        .sobre-profissional {
+            background: linear-gradient(135deg, #0b2f6b 45%, #f7c600 45%);
+            padding: 50px 15px;
+        }
+
+        /* CONTAINER */
+        .container-sobre {
+            color: white;
+            background-color: #27619b;
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        /* IMAGEM */
+        .img-profissional {
+            flex: 1;
+            text-align: center;
+        }
+
+        .img-profissional img {
+            max-width: 200px;
+            border-radius: 14px;
+        }
+
+        /* TEXTO */
+        .texto-profissional {
+            flex: 1;
+        }
+
+        .texto-profissional h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .texto-profissional p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* BOTÃO */
+        .btn-saiba {
+            display: inline-block;
+            padding: 10px 16px;
+            font-size: 13px;
+            background: #0b2f6b;
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        /* CORES */
+        .sobreh2 {
+            color: rgb(255, 191, 0);
+        }
+
+        .span-h2 {
+            color: #ffde49;
+        }
+
+        /* 📱 MOBILE AJUSTADO (2 CORES BONITO) */
+        @media (max-width: 768px) {
+
+            .sobre-profissional {
+                padding: 30px 10px;
+
+                /* 🔥 muda o estilo das cores */
+                background: linear-gradient(to bottom,
+                        #0b2f6b 50%,
+                        #f7c600 50%);
+            }
+
+            .container-sobre {
+                flex-direction: column;
+                text-align: justify;
+                padding: 30px 20px;
+                gap: 15px;
+                border-radius: 16px;
+            }
+
+            .img-profissional img {
+                max-width: 140px;
+            }
+
+            .texto-profissional h2 {
+                font-size: 20px;
+            }
+
+            .texto-profissional p {
+                font-size: 13px;
+            }
+        }
+
+
+        /* HEADER */
+        .side10-header {
+            background: #ffc504;
+            padding: 12px 20px;
+            color: #353535;
+        }
+
+        .side10-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* LOGO */
+        .side10-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .side10-logo img {
+            width: 40px;
+        }
+
+        .side10-logo-texto span {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .side10-linhas {
+            display: flex;
+            gap: 3px;
+            margin-top: 3px;
+        }
+
+        .side10-linha {
+            width: 20px;
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .side10-vermelha {
+            background: red;
+        }
+
+        .side10-amarela {
+            background: yellow;
+        }
+
+        .side10-azul {
+            background: #00aaff;
+        }
+
+        /* MENU */
+        .side10-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .side10-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .side10-btn {
+            background: #f7c600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: #000;
+        }
+
+        /* BOTÃO HAMBURGUER */
+        .side10-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+
+            .side10-menu-btn {
+                display: block;
+            }
+
+            .side10-menu {
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: #0b2f6b;
+                width: 200px;
+
+                display: none;
+                padding: 15px;
+            }
+
+            .side10-menu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .side10-menu.active {
+                display: block;
+            }
+        }
+
+        .whats-container {
+            display: flex;
+            justify-content: center;
+            gap: 200px;
+            /* 🔥 mais espaço entre eles */
+            margin-top: -10px;
+            flex-wrap: wrap;
+        }
+
+        /* CARD WHATS */
+        .whats-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #2585d3;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+            min-width: 200px;
+            /* deixa todos iguais */
+            justify-content: center;
+        }
+
+        .whats-box i {
+            font-size: 20px;
+        }
+
+        /* HOVER */
+        .whats-box:hover {
+            background: #1ebe5d;
+            transform: translateY(-3px);
+        }
+
+        /* 📱 MOBILE */
+        @media (max-width: 768px) {
+            .whats-container {
+                gap: 15px;
+            }
+
+            .whats-box {
+                width: 80%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- HEADER -->
-    <header>
-        <div class="container">
-            <div class="logo">
+    <header class="side10-header">
+        <div class="side10-container">
+
+            <div class="side10-logo">
                 <img src="logo.png" alt="Logo SIDE 10">
-                <div class="logo-texto">
+                <div class="side10-logo-texto">
                     <span>SIDE 10</span>
-                    <div class="linhas">
-                        <div class="linha vermelha"></div>
-                        <div class="linha amarela"></div>
-                        <div class="linha azul"></div>
+                    <div class="side10-linhas">
+                        <div class="side10-linha side10-vermelha"></div>
+                        <div class="side10-linha side10-amarela"></div>
+                        <div class="side10-linha side10-azul"></div>
                     </div>
                 </div>
             </div>
-
-            <div class="menu-btn" onclick="toggleMenu()">☰</div>
-
-            <nav id="menu">
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#" class="btn">Entrar</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
@@ -1104,12 +1351,7 @@
     </div>
     <!-- Link Font Awesome 6 CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-
     <div class="icon-bar-compact">
-        <div class="icon-item">
-            <i class="fa-solid fa-tag"></i>
-            <p>Ofertas do dia</p>
-        </div>
         <div class="icon-item">
             <i class="fa-solid fa-couch"></i>
             <p>Casa</p>
@@ -1132,20 +1374,24 @@
             <p>Domésticas</p>
         </div>
     </div>
-
+    <script>
+        function toggleMenu() {
+            document.getElementById("side10-menu").classList.toggle("active");
+        }
+    </script>
     <h2 class="h2-if">Reels</h2>
     <div class="reels-wrapper">
         <div class="story">
             <video src="video1.mp4" muted></video>
-            <div class="story-overlay">Reel 1</div>
+            <div class="story-overlay">PET</div>
         </div>
         <div class="story">
             <video src="video2.mp4" muted></video>
-            <div class="story-overlay">Reel 2</div>
+            <div class="story-overlay">PASCOA</div>
         </div>
         <div class="story">
             <video src="video3.mp4" muted></video>
-            <div class="story-overlay">Reel 3</div>
+            <div class="story-overlay">BRINQUEDOS</div>
         </div>
     </div>
 
@@ -1259,6 +1505,36 @@
             <button class="btn-carousel right" onclick="scrollCarousel(1)">❯</button>
         </div>
     </div>
+    <section class="sobre-profissional">
+        <div class="container-sobre">
+
+            <div class="img-profissional">
+                <img src="logotipo.jpg" alt="Profissional">
+            </div>
+
+            <div class="texto-profissional">
+                <h2 class="sobreh2">Sobre o SIDE <span class="span-h2">10</span></h2>
+
+                <p>
+                    Somos uma loja criada com dedicação e propósito: ajudar famílias a economizar sem abrir mão da
+                    qualidade.
+
+                    A Side 10 foi fundada em 04/06/2025 pelo casal empreendedor Patrícia e Sidinei, com a ideia de
+                    oferecer produtos úteis, bonitos e com preços acessíveis para todos.
+
+
+                </p>
+
+                <p>
+                    Aqui você encontra novidades todos os dias e um atendimento feito com carinho. Seguimos em constante
+                    crescimento, expandindo para outras cidades e levando economia para cada vez mais famílias.
+                </p>
+
+
+            </div>
+
+        </div>
+    </section>
     <div class="main-container">
         <h2>Onde estamos localizados</h2>
 
@@ -1283,7 +1559,24 @@
             </div>
         </div>
     </div>
+    <div class="whats-container">
 
+        <a href="https://wa.me/5546991356476" target="_blank" class="whats-box">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Palmas (46) 99135-6476</span>
+        </a>
+
+        <a href="https://wa.me/5546991039393" target="_blank" class="whats-box">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Mariopolis (46) 99103-9393</span>
+        </a>
+
+        <a href="https://wa.me/5546991324780" target="_blank" class="whats-box">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Clevelandia (46) 99132-4780</span>
+        </a>
+
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -1454,6 +1747,34 @@
             const menu = document.getElementById('menu');
             menu.classList.toggle('active');
         }
+    </script>
+    <script>
+        const modal = document.getElementById("videoModal");
+        const videoGrande = document.getElementById("videoGrande");
+        const fechar = document.querySelector(".fechar");
+
+        document.querySelectorAll('.story video').forEach(video => {
+            video.addEventListener('click', () => {
+                videoGrande.src = video.src;
+                modal.style.display = "flex";
+                videoGrande.play();
+            });
+        });
+
+        fechar.onclick = () => {
+            modal.style.display = "none";
+            videoGrande.pause();
+            videoGrande.src = "";
+        };
+
+        // fechar clicando fora
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+                videoGrande.pause();
+                videoGrande.src = "";
+            }
+        };
     </script>
 </body>
 
